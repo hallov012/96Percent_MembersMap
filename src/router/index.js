@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import TheMapView from '../views/TheMapView.vue'
+import TheMembersView from '../views/TheMembersView.vue'
 
 Vue.use(VueRouter)
 
@@ -11,12 +12,9 @@ const routes = [
     component: TheMapView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/members',
+    name: 'members',
+    component: TheMembersView,
   }
 ]
 

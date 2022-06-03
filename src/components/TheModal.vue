@@ -3,9 +3,11 @@
     <div class="modal modal-overlay" @click.self="$emit('close')">
       <div class="modal-window">
         <div class="content">
-          <p>대충 내용이요?</p>
+          <slot />
         </div>
-        <button @click="$emit('close')">Close</button>
+        <div class="bottom">
+          <button class="btn btn-link" @click="$emit('close')">Close</button>
+        </div>
       </div>
     </div>
   </transition>
@@ -32,8 +34,27 @@ export default {
 }
 
 .modal-window {
+  position: absolute;
   background: #fff;
   border-radius: 4px;
   overflow: hidden;
+  width: 300px;
+  height: 500px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
+
+.modal-window button {
+  position: relative;
+  text-decoration: none;
+  color: black;
+  transition: .3s;
+}
+
+.modal-window button:hover {
+  transform: scale(1.2);
+  color: black;
+}
+
 </style>

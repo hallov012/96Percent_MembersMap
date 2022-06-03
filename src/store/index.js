@@ -12,6 +12,7 @@ export default new Vuex.Store({
     members: []
   },
   getters: {
+    members: state => state.members
   },
   mutations: {
     CREATE_MEMBER: function (state, member) {

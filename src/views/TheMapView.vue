@@ -2,76 +2,82 @@
   <div id="map-box">
     <div id="input-box">
       <select v-model="localInput" name="local" id="local-id">
-        <option :value=0>인천</option>
-        <option :value=1>서울</option>
-        <option :value=2>경기</option>
-        <option :value=3>강원</option>
-        <option :value=4>충남</option>
-        <option :value=5>세종</option>
-        <option :value=6>대전</option>
-        <option :value=7>충북</option>
-        <option :value=8>경북</option>
-        <option :value=9>전북</option>
-        <option :value=10>경남</option>
-        <option :value=11>대구</option>
-        <option :value=12>울산</option>
-        <option :value=13>광주</option>
-        <option :value=14>전남</option>
-        <option :value=15>부산</option>
-        <option :value=16>제주</option>
+        <option value="인천">인천</option>
+        <option value="서울">서울</option>
+        <option value="경기">경기</option>
+        <option value="강원">강원</option>
+        <option value="충남">충남</option>
+        <option value="세종">세종</option>
+        <option value="대전">대전</option>
+        <option value="충북">충북</option>
+        <option value="경북">경북</option>
+        <option value="전북">전북</option>
+        <option value="경남">경남</option>
+        <option value="대구">대구</option>
+        <option value="울산">울산</option>
+        <option value="광주">광주</option>
+        <option value="전남">전남</option>
+        <option value="부산">부산</option>
+        <option value="제주">제주</option>
       </select>
-      <input v-model="subLocalInput" type="text" @click="openModal" class="local-input" placeholder="지역">
+      <input v-model="subLocalInput" type="text" class="local-input" placeholder="지역">
       <input @keypress.enter="memberSubmit"  v-model="nameInput" type="text" class="name-input" placeholder="이름">
-      <button @click="memberSubmit" class="btn">Submit</button>
+      <button @click="memberSubmit" class="btn btn-link">Submit</button>
     </div>
     <img src="@/assets/map.png" alt="">
     <div id="button-box">
       <div class="top-line">
-        <button @click="openModal" class="btn btn-link">인천</button>
-        <button @click="openModal" class="btn btn-link">서울</button>
-        <button @click="openModal" class="btn btn-link">경기</button>
-        <button @click="openModal" class="btn btn-link">강원</button>
+        <button @click="selectLocal" class="btn btn-link" value="인천">인천</button>
+        <button @click="selectLocal" class="btn btn-link" value="서울">서울</button>
+        <button @click="selectLocal" class="btn btn-link" value="경기">경기</button>
+        <button @click="selectLocal" class="btn btn-link" value="강원">강원</button>
       </div>
       <div class="mid-line">
-        <button @click="openModal" class="btn btn-link">충남</button>
-        <button @click="openModal" class="btn btn-link">세종</button>
-        <button @click="openModal" class="btn btn-link">대전</button>
-        <button @click="openModal" class="btn btn-link">충북</button>
-        <button @click="openModal" class="btn btn-link">경북</button>
+        <button @click="selectLocal" class="btn btn-link" value="충남">충남</button>
+        <button @click="selectLocal" class="btn btn-link" value="세종">세종</button>
+        <button @click="selectLocal" class="btn btn-link" value="대전">대전</button>
+        <button @click="selectLocal" class="btn btn-link" value="충북">충북</button>
+        <button @click="selectLocal" class="btn btn-link" value="경북">경북</button>
       </div>
       <div class="bottom-line">
-        <button @click="openModal" class="btn btn-link">전북</button>
-        <button @click="openModal" class="btn btn-link">경남</button>
-        <button @click="openModal" class="btn btn-link">대구</button>
-        <button @click="openModal" class="btn btn-link">울산</button>
+        <button @click="selectLocal" class="btn btn-link" value="전북">전북</button>
+        <button @click="selectLocal" class="btn btn-link" value="경남">경남</button>
+        <button @click="selectLocal" class="btn btn-link" value="대구">대구</button>
+        <button @click="selectLocal" class="btn btn-link" value="울산">울산</button>
       </div>
       <div class="last-line">
-        <button @click="openModal" class="btn btn-link">광주</button>
-        <button @click="openModal" class="btn btn-link">전남</button>
-        <button @click="openModal" class="btn btn-link">부산</button>
-        <button @click="openModal" class="btn btn-link">제주</button>
+        <button @click="selectLocal" class="btn btn-link" value="광주">광주</button>
+        <button @click="selectLocal" class="btn btn-link" value="전남">전남</button>
+        <button @click="selectLocal" class="btn btn-link" value="부산">부산</button>
+        <button @click="selectLocal" class="btn btn-link" value="제주">제주</button>
       </div>
     </div>
     <div>
-      <TheModal v-if="modal" @close="closeModal" />
+      <TheModal v-if="modal" @close="closeModal">
+        <ModalContent :local="openPage" :members="members" />
+      </TheModal>
     </div>
   </div>
 </template>
 
 <script>
 import TheModal from '@/components/TheModal.vue'
+import ModalContent from '@/components/ModalContent.vue'
+import { mapGetters } from "vuex"
 
 export default {
   name: "TheMapView",
   components: {
-    TheModal
+    TheModal,
+    ModalContent
   },
   data: function () {
     return {
-      localInput: 0,
+      localInput: '',
       subLocalInput: '',
       nameInput: '',
       modal: false,
+      openPage: '',
     }
   },
   methods: {
@@ -87,12 +93,16 @@ export default {
         this.nameInput = ''
       }
     },
-    openModal: function () {
+    selectLocal: function (event) {
+      this.openPage = event.target.value
       this.modal = true
     },
     closeModal: function () {
       this.modal = false
     }
+  },
+  computed: {
+    ...mapGetters(["members"])
   }
 }
 </script>
@@ -125,6 +135,14 @@ export default {
 #input-box button {
   height: 35px;
   text-align: center;
+  transition: .3s;
+  text-decoration: none;
+  color: black;
+}
+
+#input-box button:hover,
+#input-box button:focus {
+  transform: scale(1.2);
 }
 
 #map-box img{
