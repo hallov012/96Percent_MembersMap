@@ -108,6 +108,13 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 #map-box {
   display: flex;
   flex-direction: column;
@@ -153,8 +160,9 @@ export default {
 }
 
 #button-box {
-  position: relative;
-  bottom: 450px;
+  position: absolute;
+  bottom: 560px;
+  left: 330px;
   font-family: 'Cafe24Ssurround';
 }
 
@@ -277,6 +285,10 @@ export default {
 @media (max-width: 500px) {
   #button-box {
     left: 20px;
+  }
+
+  #map-box img {
+    width: 100%;
   }
 }
 </style>

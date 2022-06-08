@@ -17,14 +17,6 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'Cafe24Ohsquare';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-
 #app {
   font-family: 'Cafe24Ohsquareair';
   margin-top: 40px;
