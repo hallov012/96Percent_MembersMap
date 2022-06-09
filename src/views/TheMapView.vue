@@ -1,29 +1,5 @@
 <template>
   <div id="map-box">
-    <div id="input-box">
-      <select v-model="localInput" name="local" id="local-id">
-        <option value="인천">인천</option>
-        <option value="서울">서울</option>
-        <option value="경기">경기</option>
-        <option value="강원">강원</option>
-        <option value="충남">충남</option>
-        <option value="세종">세종</option>
-        <option value="대전">대전</option>
-        <option value="충북">충북</option>
-        <option value="경북">경북</option>
-        <option value="전북">전북</option>
-        <option value="경남">경남</option>
-        <option value="대구">대구</option>
-        <option value="울산">울산</option>
-        <option value="광주">광주</option>
-        <option value="전남">전남</option>
-        <option value="부산">부산</option>
-        <option value="제주">제주</option>
-      </select>
-      <input v-model="subLocalInput" type="text" class="local-input" placeholder="지역">
-      <input @keypress.enter="memberSubmit"  v-model="nameInput" type="text" class="name-input" placeholder="이름">
-      <button @click="memberSubmit" class="btn btn-link">Submit</button>
-    </div>
     <img src="@/assets/map.png" alt="">
     <div id="button-box">
       <div class="top-line">
@@ -57,13 +33,14 @@
         <ModalContent :local="openPage" :members="members" />
       </TheModal>
     </div>
+    {{ localCnt }}
   </div>
 </template>
 
 <script>
 import TheModal from '@/components/TheModal.vue'
 import ModalContent from '@/components/ModalContent.vue'
-import { mapGetters } from "vuex"
+import members from "@/assets/member_lst.json"
 
 export default {
   name: "TheMapView",
@@ -78,6 +55,33 @@ export default {
       nameInput: '',
       modal: false,
       openPage: '',
+      members: members,
+      localCnt: {
+        서울: 0,
+        인천: 0,
+        경기: 0,
+        강원: 0,
+        충남: 0,
+        세종: 0,
+        대전: 0,
+        충북: 0,
+        경북: 0,
+        전북: 0,
+        경남: 0,
+        대구: 0,
+        울산: 0,
+        광주: 0,
+        전남: 0,
+        부산: 0,
+        제주: 0,
+      }
+    }
+  },
+  created() {
+    for (const member of this.members) {
+      const memberLocal = member.local
+      console.log(memberLocal)
+      this.localCnt.서울 += 1
     }
   },
   methods: {
@@ -101,9 +105,6 @@ export default {
       this.modal = false
     }
   },
-  computed: {
-    ...mapGetters(["members"])
-  }
 }
 </script>
 
@@ -121,37 +122,6 @@ export default {
   align-content: center;
 }
 
-#input-box .select {
-  width: 20px;
-}
-
-#input-box input {
-  height: 23px;
-}
-
-#input-box .local-input {
-  width: 50px;
-  margin-left: 10px;
-}
-
-#input-box .name-input {
-  width: 100px;
-  margin-left: 10px;
-}
-
-#input-box button {
-  height: 35px;
-  text-align: center;
-  transition: .3s;
-  text-decoration: none;
-  color: black;
-}
-
-#input-box button:hover,
-#input-box button:focus {
-  transform: scale(1.2);
-}
-
 #map-box img{
   position: relative;
   width: 540px;
@@ -160,9 +130,8 @@ export default {
 }
 
 #button-box {
-  position: absolute;
-  bottom: 560px;
-  left: 330px;
+  position: relative;
+  bottom: 445px;
   font-family: 'Cafe24Ssurround';
 }
 

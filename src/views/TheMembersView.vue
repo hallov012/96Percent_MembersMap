@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="member-view">
     <select v-model="selectedLocal" @change="changeLocal" name="local" id="local-id">
       <option value="ALL">ALL</option>
       <option value="인천">인천</option>
@@ -20,29 +20,27 @@
       <option value="부산">부산</option>
       <option value="제주">제주</option>
     </select>
-    <div id="member-box">
-      <p>{{ selectedMembers.length }}명이 입력 완료!</p>
+    <p style="font-weight: bold; font-size: 20px; margin-top: 25px;">{{ selectedMembers.length }}명이 입력 완료!</p>
+    <div id="member-box-2">
       <SelectLocal v-for="(member, idx) in selectedMembers" :key="idx" :member="member" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex"
 import SelectLocal from "@/components/SelectLocal.vue"
+import members from "@/assets/member_lst.json"
 
 export default {
   name: "TheMembersView",
   components: {
     SelectLocal
   },
-  computed: {
-    ...mapGetters(["members"])
-  },
   data: function () {
     return {
       selectedLocal: "ALL",
       selectedMembers: [],
+      members: members,
     }
   },
   created () {
@@ -68,7 +66,20 @@ export default {
 </script>
 
 <style>
-#member-box {
+#member-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#member-view select{
+  width: 70px;
+}
+
+#member-box-2 {
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 </style>

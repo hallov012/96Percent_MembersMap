@@ -43,5 +43,7 @@ export default {
 #member-box {
   height: 350px;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 </style>
