@@ -3,29 +3,29 @@
     <img src="@/assets/map.png" alt="">
     <div id="button-box">
       <div class="top-line">
-        <button @click="selectLocal" class="btn btn-link" value="인천">인천</button>
-        <button @click="selectLocal" class="btn btn-link" value="서울">서울</button>
-        <button @click="selectLocal" class="btn btn-link" value="경기">경기</button>
-        <button @click="selectLocal" class="btn btn-link" value="강원">강원</button>
+        <button @click="selectLocal" class="btn btn-link" value="인천">인천({{ localCnt.인천 }})</button>
+        <button @click="selectLocal" class="btn btn-link" value="서울">서울({{ localCnt.서울 }})</button>
+        <button @click="selectLocal" class="btn btn-link" value="경기">경기({{ localCnt.경기 }})</button>
+        <button @click="selectLocal" class="btn btn-link" value="강원">강원({{ localCnt.강원 }})</button>
       </div>
       <div class="mid-line">
-        <button @click="selectLocal" class="btn btn-link" value="충남">충남</button>
-        <button @click="selectLocal" class="btn btn-link" value="세종">세종</button>
-        <button @click="selectLocal" class="btn btn-link" value="대전">대전</button>
-        <button @click="selectLocal" class="btn btn-link" value="충북">충북</button>
-        <button @click="selectLocal" class="btn btn-link" value="경북">경북</button>
+        <button @click="selectLocal" class="btn btn-link" value="충남">충남({{ localCnt.충남 }})</button>
+        <button @click="selectLocal" class="btn btn-link" value="세종">세종({{ localCnt.세종 }})</button>
+        <button @click="selectLocal" class="btn btn-link" value="대전">대전({{ localCnt.대전 }})</button>
+        <button @click="selectLocal" class="btn btn-link" value="충북">충북({{ localCnt.충북 }})</button>
+        <button @click="selectLocal" class="btn btn-link" value="경북">경북({{ localCnt.경북 }})</button>
       </div>
       <div class="bottom-line">
-        <button @click="selectLocal" class="btn btn-link" value="전북">전북</button>
-        <button @click="selectLocal" class="btn btn-link" value="경남">경남</button>
-        <button @click="selectLocal" class="btn btn-link" value="대구">대구</button>
-        <button @click="selectLocal" class="btn btn-link" value="울산">울산</button>
+        <button @click="selectLocal" class="btn btn-link" value="전북">전북({{ localCnt.전북 }})</button>
+        <button @click="selectLocal" class="btn btn-link" value="경남">경남({{ localCnt.경남 }})</button>
+        <button @click="selectLocal" class="btn btn-link" value="대구">대구({{ localCnt.대구 }})</button>
+        <button @click="selectLocal" class="btn btn-link" value="울산">울산({{ localCnt.울산 }})</button>
       </div>
       <div class="last-line">
-        <button @click="selectLocal" class="btn btn-link" value="광주">광주</button>
-        <button @click="selectLocal" class="btn btn-link" value="전남">전남</button>
-        <button @click="selectLocal" class="btn btn-link" value="부산">부산</button>
-        <button @click="selectLocal" class="btn btn-link" value="제주">제주</button>
+        <button @click="selectLocal" class="btn btn-link" value="광주">광주({{ localCnt.광주 }})</button>
+        <button @click="selectLocal" class="btn btn-link" value="전남">전남({{ localCnt.전남 }})</button>
+        <button @click="selectLocal" class="btn btn-link" value="부산">부산({{ localCnt.부산 }})</button>
+        <button @click="selectLocal" class="btn btn-link" value="제주">제주({{ localCnt.제주 }})</button>
       </div>
     </div>
     <div>
@@ -81,7 +81,7 @@ export default {
     for (const member of this.members) {
       const memberLocal = member.local
       console.log(memberLocal)
-      this.localCnt.서울 += 1
+      this.localCnt[memberLocal] += 1
     }
   },
   methods: {
